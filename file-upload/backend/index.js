@@ -4,10 +4,17 @@ import { log } from "./middleware/logger.middleware.js";
 import productRouter from "./routes/productRoute.js";
 import { v2 as cloudinary } from "cloudinary";
 import mongoose from "mongoose";
+import cors from "cors";
 
 const app = express();
 app.use(log);
 app.use(express.json());
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.ALLOWED_ORIGIN,
+  })
+);
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -19,7 +26,10 @@ cloudinary.config({
 mongoose
   .connect(process.env.DATABASE_URL)
   .then(() => console.log("Connected to database"))
-  .catch((err) => console.log(`Error connecting to database ${err}`));
+  .catch((err) => {
+    console.log(`Error connecting to database ${err}`);
+    process.exit(1);
+  });
 
 const PORT = process.env.PORT || 4000;
 
