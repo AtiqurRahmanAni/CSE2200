@@ -12,7 +12,7 @@ export const productCreateSchema = Yup.object().shape({
   description: Yup.string()
     .min(10, "Description Too Short!")
     .required("Required"),
-  productCoverPhoto: Yup.mixed()
+  productCardImage: Yup.mixed()
     .required("A cover image is required")
     .test(
       "fileSize",
@@ -23,5 +23,22 @@ export const productCreateSchema = Yup.object().shape({
       "fileFormat",
       "Unsupported Format",
       (value) => value && SUPPORTED_FORMATS.includes(value.type)
+    ),
+  productImages: Yup.array()
+    .min(2, "At least two files are required")
+    .max(4, "Maximum 4 files are allowed")
+    .of(
+      Yup.mixed()
+        .required("A file is required")
+        .test(
+          "fileSize",
+          "File too large",
+          (value) => value && value.size <= FILE_SIZE
+        )
+        .test(
+          "fileFormat",
+          "Unsupported Format",
+          (value) => value && SUPPORTED_FORMATS.includes(value.type)
+        )
     ),
 });

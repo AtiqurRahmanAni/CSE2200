@@ -10,6 +10,12 @@ const ImageUploadButton = ({ setFiles, multiple = false }) => {
     if (files.length > 0) {
       if (!multiple) {
         setFiles(files[0]);
+      } else {
+        let allFiles = [];
+        for (let i = 0; i < files.length; i++) {
+          allFiles.push(files[i]);
+        }
+        setFiles(allFiles);
       }
     } else {
       console.log("No files to upload");

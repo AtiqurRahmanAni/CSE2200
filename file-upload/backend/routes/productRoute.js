@@ -3,6 +3,7 @@ import {
   getProducts,
   createProduct,
   getProductDetailsById,
+  deleteProductById,
 } from "../controllers/productController.js";
 import { upload } from "../middleware/multer.middleware.js";
 import { multerErrorHandling } from "../middleware/multerError.middleware.js";
@@ -21,6 +22,9 @@ router
     createProduct
   );
 
-router.get("/:productId", getProductDetailsById);
+router
+  .route("/:productId")
+  .get(getProductDetailsById)
+  .delete(deleteProductById);
 
 export default router;

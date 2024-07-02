@@ -38,6 +38,7 @@ export const getProductDetailsById = async (req, res) => {
 export const createProduct = async (req, res) => {
   const { productCardImage, productImages } = req.files;
   const { name, price, description } = req.body;
+
   try {
     if (!req.files || !productImages || !productCardImage) {
       return res.status(400).json({
@@ -53,7 +54,7 @@ export const createProduct = async (req, res) => {
 
     if (anotherProduct) {
       return res
-        .status(200)
+        .status(400)
         .json({ message: "Product already exists with this name" });
     }
 
@@ -94,5 +95,42 @@ export const createProduct = async (req, res) => {
     if (productImages) deleteFiles(productImages.map((item) => item.path));
     if (productCardImage)
       deleteFiles(productCardImage.map((item) => item.path));
+  }
+};
+
+export const deleteProductById = async (req, res) => {
+  const { productId } = req.params;
+  try {
+    if (!mongoose.Types.ObjectId.isValid(productId)) {
+      return res.status(400).json({ error: "Invalid product ID" });
+    }
+
+    const product = await Product.findById(productId).select({
+      productCardImage: { publicId: true },
+      productImages: { publicId: true },
+    });
+
+    let publicIds = product.productImages.map((images) => images.publicId);
+    publicIds.push(product.productCardImage.publicId);
+
+    const deleteResults = await Promise.all(
+      publicIds.map((publicId) => {
+        return new Promise((resolve, reject) => {
+          cloudinary.uploader.destroy(publicId, (error, result) => {
+            if (error) {
+              reject(error);
+            } else {
+              resolve(result);
+            }
+          });
+        });
+      })
+    );
+
+    await Product.findByIdAndDelete(productId);
+
+    return res.status(200).json({ message: "Product deleted" });
+  } catch (err) {
+    return res.status(500).json({ message: "Something went wrong" });
   }
 };
