@@ -3,12 +3,18 @@ import { Formik, Form } from "formik";
 import Input from "../components/Input/Input";
 import Button from "../components/Button/Button";
 import { productCreateSchema } from "../utils/validationSchemas";
+import ProductCoverPhotoSelection from "../components/ProductCoverPhotoSelection/ProductCoverPhotoSelection";
 
 const AddProduct = () => {
   return (
     <div className="form_wrapper">
       <Formik
-        initialValues={{ name: "", price: 10, description: "" }}
+        initialValues={{
+          name: "",
+          price: 10,
+          description: "",
+          productCoverPhoto: null,
+        }}
         validationSchema={productCreateSchema}
         onSubmit={(values) => console.log(values)}
       >
@@ -22,7 +28,13 @@ const AddProduct = () => {
               type="text"
               isTextArea={true}
             />
-
+            <ProductCoverPhotoSelection
+              image={props.values.productCoverPhoto}
+              setImage={(image) =>
+                props.setFieldValue("productCoverPhoto", image)
+              }
+              error={props.errors.productCoverPhoto}
+            />
             <Button btnText="Submit" type="submit" />
           </Form>
         )}

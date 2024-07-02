@@ -11,7 +11,7 @@ const Navbar = () => {
           <li key={idx} className={styles.nav__item}>
             <NavLink
               to={item.link}
-              className={({ isActive }) => isActive && styles.active}
+              className={({ isActive }) => (isActive ? styles.active : "")}
             >
               {item.name}
             </NavLink>
