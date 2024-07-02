@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Navbar.module.css";
 import { navItems } from "../../constant";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -9,7 +9,12 @@ const Navbar = () => {
       <ul className={styles.nav_item_wrapper}>
         {navItems.map((item, idx) => (
           <li key={idx} className={styles.nav__item}>
-            <Link to={item.link}>{item.name}</Link>
+            <NavLink
+              to={item.link}
+              className={({ isActive }) => isActive && styles.active}
+            >
+              {item.name}
+            </NavLink>
             <div className={styles.nav__item_underline} />
           </li>
         ))}

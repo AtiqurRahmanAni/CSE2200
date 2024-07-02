@@ -2,6 +2,7 @@ import { v2 as cloudinary } from "cloudinary";
 import { deleteFiles } from "../utils/index.js";
 import pLimit from "p-limit";
 import Product from "../models/product.js";
+import mongoose from "mongoose";
 
 const limit = pLimit(10);
 
@@ -14,6 +15,24 @@ export const getProducts = async (req, res) => {
       price: true,
     });
   return res.status(200).send(products);
+};
+
+export const getProductDetailsById = async (req, res) => {
+  const { productId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(productId)) {
+    return res.status(400).json({ error: "Invalid Product Id" });
+  }
+
+  const product = await Product.findById(productId).select({
+    __v: false,
+    createdAt: false,
+  });
+
+  if (!product) {
+    return res.status(404).json({ error: "Product not found" });
+  }
+  return res.status(200).send(product);
 };
 
 export const createProduct = async (req, res) => {

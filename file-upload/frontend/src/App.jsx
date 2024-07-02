@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Products from "./pages/Products";
 import AddProduct from "./pages/AddProduct";
 import { QueryClient, QueryClientProvider } from "react-query";
+import ProductDetails from "./pages/ProductDetails";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { retry: false, refetchOnWindowFocus: false } },
@@ -15,7 +16,8 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <main className="container">
           <Routes>
-            <Route element={<Products />} path="/" />
+            <Route element={<Products />} path="/products" />
+            <Route element={<ProductDetails />} path="/products/:productId" />
             <Route element={<AddProduct />} path="/add-product" />
           </Routes>
         </main>

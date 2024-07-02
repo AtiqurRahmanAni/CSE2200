@@ -8,7 +8,7 @@ const ProductCard = ({ id, productName, price, imageUrl }) => {
   return (
     <div
       className={styles.card_wrapper}
-      onClick={() => navigate("/add-product")}
+      onClick={() => navigate(`/products/${id}`)}
     >
       <div className={styles.product_card_image_wrapper}>
         <img className={styles.card_image} src={imageUrl} alt="Cover image" />

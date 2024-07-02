@@ -12,7 +12,7 @@ const Products = () => {
   return (
     <div>
       <div className="product_container">
-        {allProducts?.data?.map((item, index) => (
+        {allProducts?.data?.map((item) => (
           <ProductCard
             key={item._id}
             id={item._id}
