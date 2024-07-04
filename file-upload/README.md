@@ -1,5 +1,4 @@
 ### How to run frontend
-- Clone the repository
 - Go to the frontend directory
 - create `.env` file
 - Copy everything from the `.env.example` file
@@ -11,7 +10,6 @@ There is a `VITE_API_BASE_URL` variable in the `.env` file. The value of this va
 
 
 ### How to run backend
-- Clone the repository
 - Go to the project directory
 - create `.env` file
 - Copy everything from the `.env.example` file
