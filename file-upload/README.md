@@ -15,4 +15,5 @@ There is a `VITE_API_BASE_URL` variable in the `.env` file. The value of this va
 - Copy everything from the `.env.example` file
 - Assign values
 - Run `npm i` and then `npm run dev`
+  
 There is an `ALLOWED_ORIGIN` variable in the `.env` file. The value of this variable will be the url of the frontend. For instant, if the frontend runs on `http://localhost:5173`, the value of the variable will be this url.
