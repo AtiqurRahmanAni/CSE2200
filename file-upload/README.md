@@ -16,7 +16,7 @@ There is a `VITE_API_BASE_URL` variable in the `.env` file. The value of this va
 - Assign values
 - Run `npm i` and then `npm run dev`
   
-There is an `ALLOWED_ORIGIN` variable in the `.env` file. The value of this variable will be the url of the frontend. For instant, if the frontend runs on `http://localhost:5173`, the value of the variable will be this url.
+There is an `ALLOWED_ORIGIN` variable in the `.env` file. The value of this variable will be the url of the frontend. For instance, if the frontend runs on `http://localhost:5173`, the value of the variable will be this url.
 
 ### APIs
 Import this [file](https://drive.google.com/file/d/1xWTqcSCdO2-TtcXwNH8PnKAYfoIbBobR/view?usp=sharing) to the **Postman**.
