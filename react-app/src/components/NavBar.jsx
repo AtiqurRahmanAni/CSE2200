@@ -15,18 +15,16 @@ const NavBar = () => {
     <div className="nav-main-div">
       <nav>
         <ul className="nav-ul">
-          {pages.map((item, idx) => {
-            return (
-              <li
-                key={idx}
-                className={`nav-item ${
-                  location.pathname === item.link && "active"
-                }`}
-              >
-                <Link to={item.link}>{item.text}</Link>
-              </li>
-            );
-          })}
+          {pages.map((item, idx) => (
+            <li
+              key={idx}
+              className={`nav-item ${
+                location.pathname === item.link && "active"
+              }`}
+            >
+              <Link to={item.link}>{item.text}</Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </div>
