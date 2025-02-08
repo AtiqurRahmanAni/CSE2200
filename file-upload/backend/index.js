@@ -5,6 +5,7 @@ import productRouter from "./routes/productRoute.js";
 import { v2 as cloudinary } from "cloudinary";
 import mongoose from "mongoose";
 import cors from "cors";
+import fs from "fs";
 
 const app = express();
 app.use(log);
@@ -30,6 +31,11 @@ mongoose
     console.log(`Error connecting to database ${err}`);
     process.exit(1);
   });
+
+const dir = "./uploads";
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir);
+}
 
 const PORT = process.env.PORT || 4000;
 
