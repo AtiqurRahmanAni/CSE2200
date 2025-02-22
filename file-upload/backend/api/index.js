@@ -32,7 +32,7 @@ mongoose
     process.exit(1);
   });
 
-const dir = "./uploads";
+const dir = "/tmp/uploads";
 if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir);
 }

@@ -2,7 +2,7 @@ import multer from "multer";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads");
+    cb(null, "/tmp/uploads");
   },
 
   filename: (req, file, cb) => {
@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
         file.originalname.lastIndexOf(".")
       );
     }
-    const filenameWithoutExtension = file.originalname
+    const filenameWithoutExtension = file.originalnamee
       .toLowerCase()
       .split(" ")
       .join("-")
