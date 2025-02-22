@@ -1,7 +1,7 @@
 import express from "express";
 import "dotenv/config";
-import { log } from "./middleware/logger.middleware.js";
-import productRouter from "./routes/productRoute.js";
+import { log } from "../middleware/logger.middleware.js";
+import productRouter from "../routes/productRoute.js";
 import { v2 as cloudinary } from "cloudinary";
 import mongoose from "mongoose";
 import cors from "cors";
