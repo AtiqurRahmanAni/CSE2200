@@ -4,8 +4,8 @@ A React single-page application built with **Vite** and **React Router**, featur
 
 ## Tech Stack
 
-- **React** 18
-- **Vite** 5 – build tool and dev server
+- **React** 19
+- **Vite** 7 – build tool and dev server
 - **React Router DOM** 6 – client-side routing
 - **ESLint** – linting
 
