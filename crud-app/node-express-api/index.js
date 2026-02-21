@@ -21,7 +21,7 @@ app.use(
   cors({
     credentials: true,
     origin: process.env.ALLOWED_ORIGIN,
-  })
+  }),
 );
 app.use(log);
 
