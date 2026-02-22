@@ -25,11 +25,11 @@ app.use(
 );
 app.use(log);
 
-app.get("/", (req, res) => res.json({ message: "API is working" }));
+app.get("/api", (req, res) => res.json({ message: "API is working" }));
 
-app.use("/users", userRoutes);
+app.use("/api/users", userRoutes);
 
-app.use("/auth", authRouter);
+app.use("/api/auth", authRouter);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
